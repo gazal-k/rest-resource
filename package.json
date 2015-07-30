@@ -1,0 +1,10 @@
+{
+  "private": true,
+  "devDependencies": {
+    "jshint-stylish": "^2.0.0",
+    "gulp": "^3.8.5",
+    "gulp-jshint": "^1.6.3",
+    "gulp-load-plugins": "^0.10.0",
+    "run-sequence": "^1.0.2"
+  }
+}

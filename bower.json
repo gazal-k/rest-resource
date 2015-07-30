@@ -1,0 +1,24 @@
+{
+  "name": "rest-resource",
+  "version": "0.0.1",
+  "description": "A web component that encapsulates REST API calls",
+  "keywords": [
+    "web-component",
+    "web-components",
+    "polymer",
+    "rest"
+  ],
+  "main": "rest-resource.html",
+  "license": "MIT",
+  "ignore": [
+    "/.*",
+    "/test/"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.0.0",
+    "iron-ajax": "PolymerElements/iron-ajax#^1.0.0"
+  },
+  "devDependencies": {
+    "web-component-tester": "*"
+  }
+}

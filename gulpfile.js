@@ -5,6 +5,7 @@ var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
 var runSequence = require('run-sequence');
 var inlinesource = require('gulp-inline-source');
+var bump = require('gulp-bump');
 
 gulp.task('jshint', function () {
   return gulp.src([
@@ -23,6 +24,12 @@ gulp.task('inlinesource', function () {
   return gulp.src('./src/*.html')
     .pipe(inlinesource(options))
     .pipe(gulp.dest('./'));
+});
+
+gulp.task('bump', function(){
+  gulp.src('./bower.json')
+  .pipe(bump())
+  .pipe(gulp.dest('./'));
 });
 
 gulp.task('default', function (callback) {

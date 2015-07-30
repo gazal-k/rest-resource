@@ -12,7 +12,8 @@
   "license": "MIT",
   "ignore": [
     "/.*",
-    "/test/"
+    "/test/",
+    "/src/"
   ],
   "dependencies": {
     "polymer": "Polymer/polymer#^1.0.0",

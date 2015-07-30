@@ -1,6 +1,6 @@
 {
   "name": "rest-resource",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A web component that encapsulates REST API calls",
   "keywords": [
     "web-component",

@@ -13,7 +13,9 @@
   "ignore": [
     "/.*",
     "/test/",
-    "/src/"
+    "/src/",
+    "/gulpfile.js",
+    "/package.json"
   ],
   "dependencies": {
     "polymer": "Polymer/polymer#^1.0.0",

@@ -68,7 +68,7 @@ THE SOFTWARE.
     return function() {
       me.fire('error', {
         request : request,
-        data : request.response
+        response : request.response
       });
       return typeof errorCallback === 'function' ? errorCallback(request.response, request) : void 0;
     };

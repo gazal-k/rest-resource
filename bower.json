@@ -1,6 +1,9 @@
 {
   "name": "rest-resource",
   "version": "0.0.2",
+  "authors": [
+    "Gazal <mohamed.gazal@gmail.com>"
+  ],
   "description": "A web component that encapsulates REST API calls",
   "keywords": [
     "web-component",
@@ -10,9 +13,11 @@
   ],
   "main": "rest-resource.html",
   "license": "MIT",
+  "homepage": "https://github.com/gazal-k/rest-resource",
   "ignore": [
     "/.*",
     "/test/",
+    "/demo/",
     "/src/",
     "/gulpfile.js",
     "/package.json"
@@ -22,6 +27,7 @@
     "iron-ajax": "PolymerElements/iron-ajax#^1.0.0"
   },
   "devDependencies": {
+    "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
     "web-component-tester": "*"
   }
 }

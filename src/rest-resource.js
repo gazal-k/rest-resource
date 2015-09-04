@@ -145,7 +145,8 @@ Polymer({
   },
 
   _createRequest: function() {
-    var me = this, request = document.createElement('iron-request');
+    var me = this;
+    var request = document.createElement('iron-request');
     me.fire('request', {
       request: request
     });
@@ -156,32 +157,27 @@ Polymer({
    * The callback function to be invoked for successful response.
    * 
    * @callback successCallback
-   * @param {Object}
-   *          response
-   * @param {Object}
-   *          request
+   * @param {Object} response
+   * @param {Object} request
    */
 
   /**
    * The callback function to be invoked for failure response.
    * 
    * @callback errorCallback
-   * @param {Object}
-   *          response
-   * @param {Object}
-   *          request
+   * @param {Object} response
+   * @param {Object} request
    */
 
   /**
    * Performs a HTTP GET on the index URL and returns the response data.
    * 
-   * @param {successCallback}
-   *          successCallback - the callback function will be invoked with response data on successful response.
-   * @param {errorCallback}
-   *          errorCallback- the callback function will be invoked with response data on error response.
+   * @param {successCallback} successCallback - the callback function will be invoked with response data on successful response.
+   * @param {errorCallback} errorCallback - the callback function will be invoked with response data on error response.
    */
   index: function(successCallback, errorCallback) {
-    var me = this, request = me._createRequest();
+    var me = this;
+    var request = me._createRequest();
     return request.send({
       url: me._prepareUrl(me.indexUrl || me.url, me.params),
       headers: me._prepareHeaders(),
@@ -192,15 +188,13 @@ Polymer({
   /**
    * Performs a HTTP GET on the show URL with the specified resource id and returns the response data.
    * 
-   * @param {string}
-   *          id - the id of the resource to be fetched.
-   * @param {successCallback}
-   *          successCallback - the callback function will be invoked with response data on successful response.
-   * @param {errorCallback}
-   *          errorCallback- the callback function will be invoked with response data on error response.
+   * @param {String} id - the id of the resource to be fetched.
+   * @param {successCallback} successCallback - the callback function will be invoked with response data on successful response.
+   * @param {errorCallback} errorCallback - the callback function will be invoked with response data on error response.
    */
   show: function(id, successCallback, errorCallback) {
-    var me = this, request = me._createRequest();
+    var me = this;
+    var request = me._createRequest();
     return request.send({
       url: me._prepareUrl(me.showUrl || me.url, me.params, id),
       headers: me._prepareHeaders(),
@@ -211,15 +205,13 @@ Polymer({
   /**
    * Performs a HTTP POST on the create URL with the specified resource data and returns the response data.
    * 
-   * @param {Object}
-   *          data - data for new resource to be created.
-   * @param {successCallback}
-   *          successCallback - the callback function will be invoked with response data on successful response.
-   * @param {errorCallback}
-   *          errorCallback- the callback function will be invoked with response data on error response.
+   * @param {Object} data - data for new resource to be created.
+   * @param {successCallback} successCallback - the callback function will be invoked with response data on successful response.
+   * @param {errorCallback} errorCallback - the callback function will be invoked with response data on error response.
    */
   create: function(data, successCallback, errorCallback) {
-    var me = this, request = me._createRequest();
+    var me = this;
+    var request = me._createRequest();
     return request.send({
       method: 'POST',
       url: me._prepareUrl(me.createUrl || me.url, me.params),
@@ -232,17 +224,14 @@ Polymer({
   /**
    * Performs a HTTP PUT on the update URL with the specified resource id and data and returns the response data.
    * 
-   * @param {string}
-   *          id - the id of the resource to be updated.
-   * @param {Object}
-   *          data - updated resource data.
-   * @param {successCallback}
-   *          successCallback - the callback function will be invoked with response data on successful response.
-   * @param {errorCallback}
-   *          errorCallback- the callback function will be invoked with response data on error response.
+   * @param {String} id - the id of the resource to be updated.
+   * @param {Object} data - updated resource data.
+   * @param {successCallback} successCallback - the callback function will be invoked with response data on successful response.
+   * @param {errorCallback} errorCallback - the callback function will be invoked with response data on error response.
    */
   update: function(id, data, successCallback, errorCallback) {
-    var me = this, request = me._createRequest();
+    var me = this;
+    var request = me._createRequest();
     return request.send({
       method: 'PUT',
       url: me._prepareUrl(me.updateUrl || me.url, me.params, id),
@@ -255,15 +244,13 @@ Polymer({
   /**
    * Performs a HTTP DELETE on the destroy URL with the specified resource id and returns the response data.
    * 
-   * @param {string}
-   *          id - the id of the resource to be destroyed.
-   * @param {successCallback}
-   *          successCallback - the callback function will be invoked with response data on successful response.
-   * @param {errorCallback}
-   *          errorCallback- the callback function will be invoked with response data on error response.
+   * @param {String} id - the id of the resource to be destroyed.
+   * @param {successCallback} successCallback - the callback function will be invoked with response data on successful response.
+   * @param {errorCallback} errorCallback - the callback function will be invoked with response data on error response.
    */
   destroy: function(id, successCallback, errorCallback) {
-    var me = this, request = me._createRequest();
+    var me = this;
+    var request = me._createRequest();
     return request.send({
       method: 'DELETE',
       url: me._prepareUrl(me.destroyUrl || me.url, me.params, id),
@@ -275,17 +262,14 @@ Polymer({
   /**
    * Performs a HTTP PUT on the member URL with "/action" appended to it and the specified resource id and returns the response data.
    * 
-   * @param {string}
-   *          id - the id of the resource on which a member action is to be performed.
-   * @param {action}
-   *          the url suffix for an action.
-   * @param {successCallback}
-   *          successCallback - the callback function will be invoked with response data on successful response.
-   * @param {errorCallback}
-   *          errorCallback- the callback function will be invoked with response data on error response.
+   * @param {String} id - the id of the resource on which a member action is to be performed.
+   * @param {String} action - the url suffix for an action.
+   * @param {successCallback} successCallback - the callback function will be invoked with response data on successful response.
+   * @param {errorCallback} errorCallback - the callback function will be invoked with response data on error response.
    */
   memberAction: function(id, action, successCallback, errorCallback) {
-    var me = this, request = me._createRequest();
+    var me = this;
+    var request = me._createRequest();
     return request.send({
       method: 'PUT',
       url: me._prepareUrl(me.memberUrl || me.url, me.params, id, action),
@@ -295,7 +279,8 @@ Polymer({
   },
 
   _prepareUrl: function(url, params, id, action) {
-    var name, value;
+    var name;
+    var value;
     if (params === null) {
       params = {};
     }
@@ -330,7 +315,10 @@ Polymer({
   },
 
   _prepareHeaders: function() {
-    var h, key, val, _ref;
+    var h;
+    var key;
+    var val;
+    var _ref;
     h = {
       'Accept': 'application/json'
     };

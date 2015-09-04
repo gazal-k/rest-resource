@@ -7,6 +7,7 @@ var runSequence = require('run-sequence');
 var inlinesource = require('gulp-inline-source');
 var bump = require('gulp-bump');
 
+//Lint JavaScript
 gulp.task('jshint', function () {
   return gulp.src([
       'src/*.js',
@@ -15,6 +16,14 @@ gulp.task('jshint', function () {
     .pipe($.jshint.extract()) // Extract JS from .html files
     .pipe($.jshint())
     .pipe($.jshint.reporter('jshint-stylish'));
+});
+
+//JavaScript Code Style
+gulp.task('jscs', function () {
+  return gulp.src([
+      'src/**/*.js'
+    ])
+    .pipe($.jscs());
 });
 
 gulp.task('inlinesource', function () {
@@ -34,7 +43,7 @@ gulp.task('bump', function(){
 
 gulp.task('default', function (callback) {
   runSequence(
-    'jshint',
+    ['jshint', 'jscs'],
     'inlinesource',
     callback);
 });

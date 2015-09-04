@@ -1,12 +1,14 @@
 {
   "private": true,
   "devDependencies": {
-    "jshint-stylish": "^2.0.0",
     "gulp": "^3.8.5",
     "gulp-bump": "^0.3.1",
     "gulp-inline-source": "2.1.0",
+    "gulp-jscs": "^2.0.0",
     "gulp-jshint": "^1.6.3",
     "gulp-load-plugins": "^0.10.0",
+    "jscs-trailing-whitespace-in-source": "0.0.1",
+    "jshint-stylish": "^2.0.0",
     "run-sequence": "^1.0.2"
   }
 }

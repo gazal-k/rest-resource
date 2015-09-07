@@ -332,7 +332,8 @@ Polymer({
   _prepareHeaders: function() {
     var h, key, val, _ref;
     h = {
-      'Accept': 'application/json'
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
     };
     _ref = this.headers;
     for (key in _ref) {

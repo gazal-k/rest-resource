@@ -174,12 +174,13 @@ Polymer({
    * 
    * @param {successCallback} successCallback - the callback function will be invoked with response data on successful response.
    * @param {errorCallback} errorCallback - the callback function will be invoked with response data on error response.
+   * @param {Object} queryParams - query parameters to be added to the request.
    */
-  index: function(successCallback, errorCallback) {
+  index: function(successCallback, errorCallback, queryParams) {
     var me = this;
     var request = me._createRequest();
     return request.send({
-      url: me._prepareUrl(me.indexUrl || me.url, me.params),
+      url: me._prepareUrl(me.indexUrl || me.url, me.params, queryParams),
       headers: me._prepareHeaders(),
       handleAs: 'json'
     }).then(me._handleSuccess(request, successCallback), me._handleError(request, errorCallback));
@@ -191,12 +192,13 @@ Polymer({
    * @param {String} id - the id of the resource to be fetched.
    * @param {successCallback} successCallback - the callback function will be invoked with response data on successful response.
    * @param {errorCallback} errorCallback - the callback function will be invoked with response data on error response.
+   * @param {Object} queryParams - query parameters to be added to the request.
    */
-  show: function(id, successCallback, errorCallback) {
+  show: function(id, successCallback, errorCallback, queryParams) {
     var me = this;
     var request = me._createRequest();
     return request.send({
-      url: me._prepareUrl(me.showUrl || me.url, me.params, id),
+      url: me._prepareUrl(me.showUrl || me.url, me.params, queryParams, id),
       headers: me._prepareHeaders(),
       handleAs: 'json'
     }).then(me._handleSuccess(request, successCallback), me._handleError(request, errorCallback));
@@ -208,13 +210,14 @@ Polymer({
    * @param {Object} data - data for new resource to be created.
    * @param {successCallback} successCallback - the callback function will be invoked with response data on successful response.
    * @param {errorCallback} errorCallback - the callback function will be invoked with response data on error response.
+   * @param {Object} queryParams - query parameters to be added to the request.
    */
-  create: function(data, successCallback, errorCallback) {
+  create: function(data, successCallback, errorCallback, queryParams) {
     var me = this;
     var request = me._createRequest();
     return request.send({
       method: 'POST',
-      url: me._prepareUrl(me.createUrl || me.url, me.params),
+      url: me._prepareUrl(me.createUrl || me.url, me.params, queryParams),
       headers: me._prepareHeaders(),
       body: JSON.stringify(data),
       handleAs: 'json'
@@ -228,13 +231,14 @@ Polymer({
    * @param {Object} data - updated resource data.
    * @param {successCallback} successCallback - the callback function will be invoked with response data on successful response.
    * @param {errorCallback} errorCallback - the callback function will be invoked with response data on error response.
+   * @param {Object} queryParams - query parameters to be added to the request.
    */
-  update: function(id, data, successCallback, errorCallback) {
+  update: function(id, data, successCallback, errorCallback, queryParams) {
     var me = this;
     var request = me._createRequest();
     return request.send({
       method: 'PUT',
-      url: me._prepareUrl(me.updateUrl || me.url, me.params, id),
+      url: me._prepareUrl(me.updateUrl || me.url, me.params, queryParams, id),
       headers: me._prepareHeaders(),
       body: JSON.stringify(data),
       handleAs: 'json'
@@ -247,13 +251,14 @@ Polymer({
    * @param {String} id - the id of the resource to be destroyed.
    * @param {successCallback} successCallback - the callback function will be invoked with response data on successful response.
    * @param {errorCallback} errorCallback - the callback function will be invoked with response data on error response.
+   * @param {Object} queryParams - query parameters to be added to the request.
    */
-  destroy: function(id, successCallback, errorCallback) {
+  destroy: function(id, successCallback, errorCallback, queryParams) {
     var me = this;
     var request = me._createRequest();
     return request.send({
       method: 'DELETE',
-      url: me._prepareUrl(me.destroyUrl || me.url, me.params, id),
+      url: me._prepareUrl(me.destroyUrl || me.url, me.params, queryParams, id),
       headers: me._prepareHeaders(),
       handleAs: 'json'
     }).then(me._handleSuccess(request, successCallback), me._handleError(request, errorCallback));
@@ -266,19 +271,20 @@ Polymer({
    * @param {String} action - the url suffix for an action.
    * @param {successCallback} successCallback - the callback function will be invoked with response data on successful response.
    * @param {errorCallback} errorCallback - the callback function will be invoked with response data on error response.
+   * @param {Object} queryParams - query parameters to be added to the request.
    */
-  memberAction: function(id, action, successCallback, errorCallback) {
+  memberAction: function(id, action, successCallback, errorCallback, queryParams) {
     var me = this;
     var request = me._createRequest();
     return request.send({
       method: 'PUT',
-      url: me._prepareUrl(me.memberUrl || me.url, me.params, id, action),
+      url: me._prepareUrl(me.memberUrl || me.url, me.params, queryParams, id, action),
       headers: me._prepareHeaders(),
       handleAs: 'json'
     }).then(me._handleSuccess(request, successCallback), me._handleError(request, errorCallback));
   },
 
-  _prepareUrl: function(url, params, id, action) {
+  _prepareUrl: function(url, params, queryParams, id, action) {
     var name;
     var value;
     if (params === null) {
@@ -295,6 +301,13 @@ Polymer({
     }
     for (name in params) {
       value = params[name];
+      url = url.replace(':' + name, value || '');
+    }
+    for (name in queryParams) {
+      value = queryParams[name];
+      if (typeof value === 'object') {
+        value = JSON.stringify(value);
+      }
       if (typeof value === 'undefined' || value === null || '' === String(value).trim()) {
         continue;
       }
